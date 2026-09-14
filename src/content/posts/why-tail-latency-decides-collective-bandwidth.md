@@ -3,7 +3,7 @@ title: "Why tail latency decides collective bandwidth"
 description: "An all-reduce is only as fast as its slowest participant, which makes the p99 link the one worth measuring."
 pubDate: 2026-09-02
 tags: ["interconnect", "nccl"]
-draft: false
+draft: true
 ---
 
 This is a placeholder post so the layout has something to render. Delete it
