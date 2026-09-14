@@ -1,0 +1,73 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Topology from '../components/Topology.astro';
+
+const posts = (await getCollection('posts', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+---
+
+<Base
+  title="Nikhil Shetty"
+  description="Networking and interconnect for large GPU clusters — writing, standards work, and a book in progress."
+>
+  <section class="hero">
+    <h1 class="hero__name">Nikhil Shetty</h1>
+    <p class="hero__line">
+      I work on the interconnect that decides how fast a GPU cluster actually
+      goes.
+    </p>
+
+    <Topology />
+
+    <div class="hero__bio">
+      <p>
+        Sixteen years in AI infrastructure, networking, and high-performance
+        computing, most of it spent on the parts of the stack that only become
+        visible when a training run stalls: InfiniBand and RoCE fabrics,
+        congestion control, collective communication, and the physical layer
+        underneath all of it.
+      </p>
+      <p>
+        I contribute to interconnect standards through OCP and the Ultra
+        Ethernet Consortium, and I have a Ph.D. in EECS from UC Berkeley.
+        Based in Santa Clara, California.
+      </p>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="band__head">
+      <h2>Writing</h2>
+      <span class="band__more"><a href="/writing/">All posts</a></span>
+    </div>
+    <ul class="entries">
+      {posts.map((post) => (
+        <li>
+          <time datetime={post.data.pubDate.toISOString()}>{fmt(post.data.pubDate)}</time>
+          <a href={`/writing/${post.id}/`}>{post.data.title}</a>
+          <p>{post.data.description}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="band">
+    <div class="band__head">
+      <h2>Book</h2>
+      <span class="band__more"><a href="/book/">Details and updates</a></span>
+    </div>
+    <div class="book">
+      <p class="book__title">High-Performance AI Systems</p>
+      <p class="book__sub">Engineering Hyperscale GPU Clusters</p>
+      <p class="book__body">
+        A book for engineers who have to make large GPU clusters work, written
+        with Rik Kisnah and published by Packt. In progress.
+      </p>
+    </div>
+  </section>
+</Base>

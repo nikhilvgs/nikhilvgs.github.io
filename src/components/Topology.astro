@@ -1,0 +1,44 @@
+---
+// A rail-optimised leaf/spine sketch. The aqua links are the scale-out
+// fabric — the part of the stack this site is mostly about.
+const W = 700;
+const spineY = 20;
+const leafY = 78;
+const hostY = 136;
+
+const row = (n: number) =>
+  Array.from({ length: n }, (_, i) => ((i + 0.5) * W) / n);
+
+const spines = row(2);
+const leaves = row(4);
+const hosts = row(8);
+---
+
+<figure class="topology">
+  <svg viewBox={`0 0 ${W} 156`} role="img" aria-labelledby="topology-caption">
+    <g stroke="var(--rule)" stroke-width="1" fill="none">
+      {hosts.map((x, i) => (
+        <line x1={x} y1={hostY - 6} x2={leaves[Math.floor(i / 2)]} y2={leafY + 8} />
+      ))}
+    </g>
+
+    <g stroke="var(--aqua)" stroke-width="1.25" fill="none" opacity="0.75">
+      {leaves.map((x) => spines.map((sx) => (
+        <line x1={x} y1={leafY - 8} x2={sx} y2={spineY + 8} />
+      )))}
+    </g>
+
+    <g fill="var(--paper)" stroke="var(--ink)" stroke-width="1.25">
+      {spines.map((x) => <rect x={x - 34} y={spineY - 8} width="68" height="16" />)}
+      {leaves.map((x) => <rect x={x - 26} y={leafY - 8} width="52" height="16" />)}
+    </g>
+
+    <g fill="var(--ink-3)" stroke="none">
+      {hosts.map((x) => <rect x={x - 12} y={hostY - 6} width="24" height="12" />)}
+    </g>
+  </svg>
+  <figcaption id="topology-caption">
+    Leaf/spine, drawn the way it gets drawn on a whiteboard. The aqua links are
+    where most of my work happens.
+  </figcaption>
+</figure>

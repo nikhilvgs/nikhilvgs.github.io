@@ -1,0 +1,552 @@
+/* ---------------------------------------------------------------
+   nikhilshetty.net
+
+   Palette is taken from datacenter fibre colour coding: the aqua of
+   OM3/OM4 multimode boots carries interaction, and the yellow of
+   single-mode (long reach) is reserved for one thread only, the book.
+   Nothing else is allowed to use the amber.
+   --------------------------------------------------------------- */
+
+:root {
+  --ink:        #16232c;
+  --ink-2:      #4e626f;
+  --ink-3:      #7d8f9a;
+  --paper:      #fbfcfc;
+  --panel:      #eff3f4;
+  --rule:       #d2dbdf;
+  --aqua:       #00807f;
+  --aqua-lift:  #00605f;
+  --amber:      #a9740c;
+
+  --sans:  'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  --serif: 'IBM Plex Serif', Georgia, serif;
+  --mono:  'IBM Plex Mono', ui-monospace, 'SF Mono', monospace;
+
+  /* 1.265 modular scale on a 17px base */
+  --t-xs:   0.79rem;
+  --t-s:    0.889rem;
+  --t-base: 1rem;
+  --t-m:    1.125rem;
+  --t-l:    1.424rem;
+  --t-xl:   1.802rem;
+  --t-2xl:  2.281rem;
+
+  --measure: 68ch;
+  --wide:    46rem;
+  --gap:     1.5rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 17px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: var(--t-base);
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- shell ---------------------------------------------------- */
+
+.shell {
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: 0 var(--gap);
+}
+
+main {
+  display: block;
+  padding-bottom: 5rem;
+}
+
+/* --- headings ------------------------------------------------- */
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--sans);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  margin: 0 0 0.5em;
+  text-wrap: balance;
+}
+
+h1 { font-size: var(--t-2xl); }
+h2 { font-size: var(--t-l); }
+h3 { font-size: var(--t-m); }
+
+p { margin: 0 0 1.1em; }
+
+/* --- links ---------------------------------------------------- */
+
+a {
+  color: var(--aqua);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  text-decoration-color: color-mix(in srgb, var(--aqua) 40%, transparent);
+}
+
+a:hover {
+  color: var(--aqua-lift);
+  text-decoration-color: currentColor;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--aqua);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+/* --- header --------------------------------------------------- */
+
+.masthead {
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 3rem;
+}
+
+.masthead__inner {
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: 1.1rem var(--gap);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.masthead__home {
+  font-family: var(--mono);
+  font-size: var(--t-s);
+  color: var(--ink-2);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.masthead__home:hover {
+  color: var(--ink);
+}
+
+.masthead__nav {
+  display: flex;
+  gap: 1.25rem;
+  font-family: var(--sans);
+  font-size: var(--t-s);
+}
+
+.masthead__nav a {
+  color: var(--ink-2);
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+}
+
+.masthead__nav a:hover,
+.masthead__nav a[aria-current='page'] {
+  color: var(--ink);
+  border-bottom-color: var(--aqua);
+}
+
+/* --- hero ----------------------------------------------------- */
+
+.hero__name {
+  font-size: var(--t-2xl);
+  margin-bottom: 0.3em;
+}
+
+.hero__line {
+  font-size: var(--t-l);
+  line-height: 1.35;
+  color: var(--ink);
+  max-width: 30ch;
+  margin-bottom: 2rem;
+}
+
+.hero__bio {
+  max-width: var(--measure);
+  color: var(--ink-2);
+}
+
+.hero__bio strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* --- topology figure ------------------------------------------ */
+
+.topology {
+  margin: 2.5rem 0 3rem;
+}
+
+.topology svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.topology figcaption {
+  font-family: var(--sans);
+  font-size: var(--t-xs);
+  color: var(--ink-3);
+  margin-top: 0.6rem;
+}
+
+/* --- sections ------------------------------------------------- */
+
+.band {
+  border-top: 1px solid var(--rule);
+  padding-top: 1.75rem;
+  margin-top: 3rem;
+}
+
+.band__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.band__head h2 {
+  margin: 0;
+}
+
+.band__more {
+  font-family: var(--sans);
+  font-size: var(--t-s);
+}
+
+/* --- post list ------------------------------------------------ */
+
+.entries {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.entries li {
+  padding: 0.9rem 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--rule) 55%, transparent);
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  gap: 0.25rem 1rem;
+  align-items: baseline;
+}
+
+.entries li:last-child {
+  border-bottom: 0;
+}
+
+.entries time {
+  font-family: var(--sans);
+  font-size: var(--t-s);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-3);
+}
+
+.entries a {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: var(--t-m);
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1px;
+}
+
+.entries a:hover {
+  border-bottom-color: var(--aqua);
+}
+
+.entries p {
+  grid-column: 2;
+  margin: 0.3rem 0 0;
+  font-size: var(--t-s);
+  color: var(--ink-2);
+}
+
+@media (max-width: 34rem) {
+  .entries li {
+    grid-template-columns: 1fr;
+  }
+
+  .entries p {
+    grid-column: 1;
+  }
+}
+
+/* --- the book thread ------------------------------------------ */
+
+.book {
+  border-left: 3px solid var(--amber);
+  padding-left: 1.5rem;
+}
+
+.book__title {
+  font-family: var(--sans);
+  font-size: var(--t-xl);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  margin: 0 0 0.15em;
+}
+
+.book__sub {
+  font-family: var(--sans);
+  font-size: var(--t-m);
+  font-weight: 400;
+  color: var(--ink-2);
+  margin: 0 0 1.1em;
+}
+
+.book__meta {
+  font-family: var(--sans);
+  font-size: var(--t-s);
+  color: var(--ink-3);
+  margin-bottom: 1.5rem;
+}
+
+.book__body {
+  max-width: var(--measure);
+  color: var(--ink-2);
+}
+
+.parts {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.parts h3 {
+  margin: 0 0 0.2em;
+  font-size: var(--t-s);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.parts p {
+  margin: 0;
+  font-size: var(--t-s);
+  color: var(--ink-2);
+}
+
+/* --- signup --------------------------------------------------- */
+
+.signup {
+  background: var(--panel);
+  padding: 1.5rem;
+  margin-top: 2.5rem;
+  max-width: var(--measure);
+}
+
+.signup h3 {
+  margin-top: 0;
+}
+
+.signup p {
+  font-size: var(--t-s);
+  color: var(--ink-2);
+}
+
+.signup__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.signup input[type='email'] {
+  flex: 1 1 15rem;
+  font-family: var(--sans);
+  font-size: var(--t-base);
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.signup input[type='email']:focus-visible {
+  outline: 2px solid var(--aqua);
+  outline-offset: 1px;
+}
+
+.signup button {
+  font-family: var(--sans);
+  font-size: var(--t-base);
+  font-weight: 500;
+  padding: 0.6rem 1.1rem;
+  border: 0;
+  background: var(--ink);
+  color: var(--paper);
+  cursor: pointer;
+}
+
+.signup button:hover {
+  background: var(--aqua-lift);
+}
+
+.signup button:focus-visible {
+  outline: 2px solid var(--aqua);
+  outline-offset: 2px;
+}
+
+/* --- prose (post bodies) -------------------------------------- */
+
+.prose {
+  max-width: var(--measure);
+}
+
+.prose h2 {
+  margin-top: 2.25em;
+}
+
+.prose h3 {
+  margin-top: 1.75em;
+}
+
+.prose img {
+  max-width: 100%;
+  height: auto;
+}
+
+.prose blockquote {
+  margin: 1.5em 0;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--rule);
+  color: var(--ink-2);
+}
+
+.prose code {
+  font-family: var(--mono);
+  font-size: 0.86em;
+  background: var(--panel);
+  padding: 0.1em 0.35em;
+}
+
+.prose pre {
+  font-family: var(--mono);
+  font-size: var(--t-s);
+  padding: 1rem 1.15rem;
+  overflow-x: auto;
+  border: 1px solid var(--rule);
+  line-height: 1.5;
+}
+
+.prose pre code {
+  background: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--sans);
+  font-size: var(--t-s);
+  margin: 1.5em 0;
+}
+
+.prose th,
+.prose td {
+  text-align: left;
+  padding: 0.5rem 0.75rem 0.5rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* --- post header ---------------------------------------------- */
+
+.post__date {
+  font-family: var(--sans);
+  font-size: var(--t-s);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-3);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.post__title {
+  margin-bottom: 0.4em;
+}
+
+.post__standfirst {
+  font-size: var(--t-m);
+  color: var(--ink-2);
+  max-width: var(--measure);
+  margin-bottom: 2.5rem;
+}
+
+/* --- footer --------------------------------------------------- */
+
+.colophon {
+  border-top: 1px solid var(--rule);
+  margin-top: 4rem;
+  padding: 1.5rem 0 3rem;
+  font-family: var(--sans);
+  font-size: var(--t-s);
+  color: var(--ink-3);
+}
+
+.colophon__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.colophon__links a {
+  color: var(--ink-2);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+
+.colophon__links a:hover {
+  color: var(--ink);
+  border-bottom-color: var(--aqua);
+}
+
+.colophon p {
+  margin: 0;
+  max-width: var(--measure);
+}
+
+/* --- utility -------------------------------------------------- */
+
+.skip {
+  position: absolute;
+  left: -9999px;
+}
+
+.skip:focus {
+  left: var(--gap);
+  top: 0.5rem;
+  z-index: 10;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.5rem 0.9rem;
+  font-family: var(--sans);
+  font-size: var(--t-s);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a,
+  .signup button {
+    transition: color 120ms ease, border-color 120ms ease, background-color 120ms ease;
+  }
+}

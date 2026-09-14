@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const posts = (await getCollection('posts', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+---
+
+<Base
+  title="Writing — Nikhil Shetty"
+  description="Notes on interconnect, GPU cluster networking, and the physical layer underneath AI infrastructure."
+>
+  <h1>Writing</h1>
+  <p class="post__standfirst">
+    Notes on interconnect, cluster networking, and the physical layer
+    underneath. Mostly the things I had to work out the hard way.
+  </p>
+
+  <ul class="entries">
+    {posts.map((post) => (
+      <li>
+        <time datetime={post.data.pubDate.toISOString()}>{fmt(post.data.pubDate)}</time>
+        <a href={`/writing/${post.id}/`}>{post.data.title}</a>
+        <p>{post.data.description}</p>
+      </li>
+    ))}
+  </ul>
+</Base>

@@ -1,0 +1,92 @@
+---
+import Base from '../layouts/Base.astro';
+
+// TODO: paste your Buttondown / Kit form action here to turn on signups.
+// Leave it empty and the form stays hidden rather than silently failing.
+const FORM_ENDPOINT = '';
+
+// TODO: add the Packt product URL once the listing goes live.
+const PACKT_URL = '';
+
+const parts = [
+  {
+    name: 'Foundations',
+    blurb:
+      'What AI workloads actually demand of hardware — how training and inference consume compute, memory, and bandwidth, and where the ceilings come from.',
+  },
+  {
+    name: 'Infrastructure',
+    blurb:
+      'The cluster itself: GPU architecture, scale-up and scale-out interconnect, storage, power, and the physical layer that ties them together.',
+  },
+  {
+    name: 'Operations',
+    blurb:
+      'Running it in production — distributed training at scale, failure modes, observability, and the operational practice that keeps utilisation high.',
+  },
+];
+---
+
+<Base
+  title="High-Performance AI Systems — Nikhil Shetty"
+  description="A book on engineering hyperscale GPU clusters, by Nikhil Shetty and Rik Kisnah, from Packt."
+>
+  <div class="book">
+    <h1 class="book__title">High-Performance AI Systems</h1>
+    <p class="book__sub">Engineering Hyperscale GPU Clusters</p>
+    <p class="book__meta">
+      Nikhil Shetty and Rik Kisnah &nbsp;|&nbsp; Packt &nbsp;|&nbsp; 13 chapters,
+      in progress
+    </p>
+
+    <div class="book__body">
+      <p>
+        Most material on large-scale AI either stops at the model or starts at
+        the datacentre door. This book covers the space in between: what a
+        training job does to the hardware it runs on, how a cluster has to be
+        built to absorb it, and what breaks first when you scale it up.
+      </p>
+      <p>
+        It is written for ML engineers who have outgrown a single node and for
+        infrastructure engineers who inherited a GPU fleet and need to know
+        which knobs matter.
+      </p>
+
+      <ul class="parts">
+        {parts.map((part) => (
+          <li>
+            <h3>{part.name}</h3>
+            <p>{part.blurb}</p>
+          </li>
+        ))}
+      </ul>
+
+      {PACKT_URL && (
+        <p style="margin-top:2rem"><a href={PACKT_URL}>Pre-order from Packt</a></p>
+      )}
+    </div>
+
+    {FORM_ENDPOINT && (
+      <div class="signup">
+        <h3>Hear when it ships</h3>
+        <p>
+          One email when the book is available, and nothing else. No other list,
+          no forwarding.
+        </p>
+        <form action={FORM_ENDPOINT} method="post">
+          <div class="signup__row">
+            <label class="skip" for="email">Email address</label>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              placeholder="you@example.com"
+              required
+            />
+            <button type="submit">Notify me</button>
+          </div>
+        </form>
+      </div>
+    )}
+  </div>
+</Base>
