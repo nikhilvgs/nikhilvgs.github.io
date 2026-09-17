@@ -28,6 +28,27 @@ const areas = [
     ],
   },
 ];
+
+const elsewhere = [
+  {
+    kind: 'Talk',
+    title: 'In-Network Collective Acceleration for AI Fabrics',
+    href: 'https://www.youtube.com/watch?v=pCKAVq22Fhs',
+    venue: 'Open Compute Project',
+  },
+  {
+    kind: 'Podcast',
+    title: 'Nikhil Shetty on Virtual Private Cloud',
+    href: 'https://se-radio.net/2023/10/se-radio-586-nikhil-shetty-on-virtual-private-cloud/',
+    venue: 'IEEE Software Engineering Radio, episode 586',
+  },
+  {
+    kind: 'Article',
+    title: 'Behind the Scenes: Securing OCI InfiniBand SuperClusters',
+    href: 'https://blogs.oracle.com/cloud-infrastructure/securing-oci-infiniband-superclusters',
+    venue: 'Oracle Cloud Infrastructure Blog',
+  },
+];
 ---
 
 <Base
@@ -52,4 +73,19 @@ const areas = [
       </li>
     ))}
   </ul>
+
+  <section class="band">
+    <div class="band__head">
+      <h2>Talks and writing</h2>
+    </div>
+    <ul class="entries">
+      {elsewhere.map((item) => (
+        <li>
+          <span class="entries__kind">{item.kind}</span>
+          <a href={item.href}>{item.title}</a>
+          <p>{item.venue}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
 </Base>

@@ -279,7 +279,8 @@ a:focus-visible {
   border-bottom: 0;
 }
 
-.entries time {
+.entries time,
+.entries__kind {
   font-family: var(--sans);
   font-size: var(--t-s);
   font-variant-numeric: tabular-nums;
