@@ -317,6 +317,53 @@ a:focus-visible {
   }
 }
 
+/* --- work ----------------------------------------------------- */
+
+.band__lede {
+  max-width: var(--measure);
+  color: var(--ink-2);
+  margin: 0;
+}
+
+.work__areas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.work__area {
+  border-top: 1px solid var(--rule);
+  padding-top: 1.75rem;
+  margin-top: 2.75rem;
+}
+
+.work__area:first-child {
+  border-top: 0;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.work__area h2 {
+  margin-bottom: 0.3em;
+}
+
+.work__lede {
+  font-family: var(--sans);
+  font-size: var(--t-s);
+  color: var(--ink-3);
+  max-width: var(--measure);
+  margin: 0 0 1.35rem;
+}
+
+.work__body {
+  max-width: var(--measure);
+  color: var(--ink-2);
+}
+
+.work__body p:last-child {
+  margin-bottom: 0;
+}
+
 /* --- the book thread ------------------------------------------ */
 
 .book {

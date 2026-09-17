@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+
+const areas = [
+  {
+    name: 'New product introduction',
+    lede: 'Bringing new GPU systems and new fabrics into a hyperscale cloud for the first time.',
+    body: [
+      'I architected the introduction of multi-rack NVL576 GPU systems, taking the NVLink world size from 72 to 576 GPUs. That is a scale-up domain eight times the size of the rack it grew out of, and it changes what the next generation of training jobs can keep inside the fast domain instead of pushing out onto the network.',
+      'Before that I architected the introduction of InfiniBand to the cloud, standing up the high-bandwidth, low-latency fabric that now spans more than 35,000 GB200 GPUs across four regions.',
+    ],
+  },
+  {
+    name: 'Performance engineering',
+    lede: 'Making the fabric behave under the traffic a training job actually produces.',
+    body: [
+      'I drove the design and development of an in-house NCCL network plugin, which improved collective-communication throughput by 47% under synthetic congestion - the condition where a well-behaved fabric and a badly behaved one look least alike.',
+      'Separately, I drove the automation of performance benchmarking on NCCL tests and Megatron, so cluster network performance can be measured the same way twice. A repeatable evaluation is worth more than a good number from a good day.',
+    ],
+  },
+  {
+    name: 'Telemetry and automation',
+    lede: 'Seeing what the fabric is doing, and acting on it before a job notices.',
+    body: [
+      'I architected and led the implementation of an automated link-flap mitigation system, cutting mean time to mitigation from around 30 minutes of manual work to under five. A flapping link left in the fabric does not slow a training job down so much as stall it, so the window matters.',
+      'On the observation side, I architected and led an RDMA probe-based monitoring system that watches the fabric the way the workload uses it, rather than the way a switch counter describes it.',
+      'Alongside that, I designed and implemented customer-facing network telemetry and topology export, so tenants can see the shape of the fabric their own jobs run across.',
+    ],
+  },
+];
+---
+
+<Base
+  title="Work - Nikhil Shetty"
+  description="GPU systems and interconnect brought into a hyperscale cloud: NVL576 and InfiniBand introduction, NCCL performance engineering, and fabric telemetry."
+>
+  <h1>Work</h1>
+  <p class="post__standfirst">
+    Introducing new GPU systems and interconnect fabrics into a hyperscale
+    cloud, tuning them for distributed training, and building the telemetry
+    that keeps them honest once the jobs are running.
+  </p>
+
+  <ul class="work__areas">
+    {areas.map((area) => (
+      <li class="work__area">
+        <h2>{area.name}</h2>
+        <p class="work__lede">{area.lede}</p>
+        <div class="work__body">
+          {area.body.map((para) => <p>{para}</p>)}
+        </div>
+      </li>
+    ))}
+  </ul>
+</Base>
